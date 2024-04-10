@@ -1,0 +1,153 @@
+@startuml
+class org.example.App2.app.view.UsersReadView {
++ void getOutput(String)
+}
+
+class org.example.App2.app.entity.Users {
+- Long id
+- String name
+- String email
++ Long getId()
++ void setId(Long)
++ String getName()
++ void setName(String)
++ String getEmail()
++ void setEmail(String)
++ String toString()
+}
+
+
+class org.example.App2.app.entity.UsersMapper {
++ Users mapData(Map<String,String>)
+}
+
+class org.example.App2.app.service.UsersService {
+~ UsersRepository repository
++ String create(Map<String,String>)
++ String read()
++ String update(Map<String,String>)
++ String delete(Map<String,String>)
++ String readById(Map<String,String>)
+}
+
+
+class org.example.App2.app.exceptions.UsersException {
+~ Map<String,String> errors
++ String getErrors(Map<String,String>)
+}
+
+
+class org.example.App2.app.view.UsersDeleteView {
++ Map<String,String> getData()
++ void getOutput(String)
+}
+
+class org.example.App2.app.utils.AppValidator {
++ {static} String ID_RGX
++ {static} String EMAIL_RGX
++ {static} boolean isIdValid(String)
++ {static} boolean isEmailValid(String)
+}
+
+
+class org.example.App2.app.database.DBConn {
++ {static} Connection connect()
+}
+
+class org.example.App2.app.utils.Constants {
++ {static} String WRONG_PHONE_MSG
++ {static} String WRONG_EMAIL_MSG
++ {static} String WRONG_ID_MSG
++ {static} String DATA_ABSENT_MSG
++ {static} String DATA_INSERT_MSG
++ {static} String DATA_UPDATE_MSG
++ {static} String DATA_DELETE_MSG
++ {static} String APP_CLOSE_MSG
++ {static} String INPUT_REQ_MSG
++ {static} String INCORRECT_VALUE_MSG
++ {static} String INCORRECT_OPTION_MSG
+}
+
+interface org.example.App2.app.repository.AppRepository {
+~ String create(T)
+~ Optional<List<T>> read()
+~ String update(T)
+~ String delete(Long)
+~ Optional<T> readById(Long)
+}
+
+class org.example.App2.app.exceptions.OptionException {
+}
+class org.example.App2.app.service.AppService {
+~ UsersController controller
++ void handleOption(int)
+}
+
+
+class org.example.App2.app.App {
++ {static} void main(String[])
+}
+
+class org.example.App2.app.view.UsersUpdateView {
++ Map<String,String> getData()
++ void getOutput(String)
+}
+
+class org.example.App2.app.view.UsersReadByIdView {
++ Map<String,String> getData()
++ void getOutput(String)
+}
+
+class org.example.App2.app.view.UserCreateView {
++ Map<String,String> getData()
++ void getOutput(String)
+}
+
+class org.example.App2.app.controller.UsersController {
+~ UsersService service
++ void create()
++ void read()
++ void update()
++ void delete()
++ void readById()
+}
+
+
+class org.example.App2.app.utils.AppStarter {
++ {static} void startApp()
+}
+
+class org.example.App2.app.view.AppView {
++ int getOption()
+- void getMenu()
++ void getOutput(String)
+}
+
+class org.example.App2.app.controller.AppController {
+~ AppView view
+~ AppService service
++ void runApp()
+}
+
+
+class org.example.App2.app.repository.impl.UsersRepository {
+- {static} String TABLE_USERS
++ String create(Users)
++ Optional<List<Users>> read()
++ String update(Users)
++ String delete(Long)
++ Optional<Users> readById(Long)
+- boolean isIdExists(Long)
+}
+
+
+class org.example.App2.app.utils.UsersValidator {
++ Map<String,String> validateUserData(Map<String,String>)
+}
+
+
+
+org.example.App2.app.exceptions.RuntimeException <|-- org.example.App2.app.exceptions.UsersException
+org.example.App2.app.exceptions.Exception <|-- org.example.App2.app.exceptions.OptionException
+org.example.App2.app.repository.AppRepository <|.. org.example.App2.app.repository.impl.UsersRepository
+@enduml

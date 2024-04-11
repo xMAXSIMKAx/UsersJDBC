@@ -10,6 +10,7 @@ public class UsersMapper {
             users.setId(Long.parseLong(data.get("id")));
         if (data.containsKey("name"))
             users.setName(data.get("name"));
+        if (data.containsKey("email"))
             users.setEmail(data.get("email"));
         return users;
     }

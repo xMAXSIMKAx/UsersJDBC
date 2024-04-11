@@ -48,7 +48,7 @@ public class UsersRepository implements AppRepository<Users> {
             while (rs.next()) {
                 list.add(new Users(
                                 rs.getLong("id"),
-                                rs.getString("Name"),
+                                rs.getString("name"),
                                 rs.getString("email")
                         )
                 );
